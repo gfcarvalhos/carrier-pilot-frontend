@@ -1,3 +1,10 @@
-const Dashboard = () => {return true}
+const Dashboard = () => {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <p>Seja bem-vindo ao painel de controle.</p>
+    </div>
+  );
+};
 
 export default Dashboard;
