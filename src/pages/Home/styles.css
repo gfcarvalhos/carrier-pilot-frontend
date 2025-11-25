@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+.home-wrapper {
+  padding-top: 80px;
+}
+
 body {
   font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-color);
