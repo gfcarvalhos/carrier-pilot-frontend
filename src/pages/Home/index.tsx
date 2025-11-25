@@ -1,5 +1,6 @@
 import "./styles.css";
 import { Navbar } from "../../components/Navbar";
+import logoImg from '../../assets/carrierPilot.png'
 
 const Home = () => {
   return (
@@ -10,6 +11,12 @@ const Home = () => {
       <section className="hero">
         <div className="container">
           <div className="hero-content">
+          <div className="hero-brand">
+            <img src={logoImg} alt="Logo" className="logo-icon" />
+            <h1>
+              CarrierPilot<span className="ai-text">.AI</span>
+            </h1>
+          </div>
             <h2>Seu mentor digital para carreira e aprendizado inteligente</h2>
             <p>
               Plataforma de IA que recomenda trilhas de carreira, planos personalizados e oportunidades com base no perfil de cada usuário

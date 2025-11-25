@@ -1,11 +1,12 @@
 import "./styles.css";
+import logoImg from '../../assets/carrierPilot.png'
 
 export const Navbar = () => {
   return (
     <header className="header">
       <div className="container">
         <div className="logo">
-          <span className="logo-icon">🚀</span>
+          <img src={logoImg} alt="CarrierPilot Logo" className="logo-icon" />
           <h1>
             CarrierPilot<span className="ai-text">.AI</span>
           </h1>
