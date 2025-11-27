@@ -1,15 +1,12 @@
 import "./styles.css";
-import logoImg from '../../assets/carrierPilot.png'
+import { Brand } from "../Brand";
 
 export const Navbar = () => {
   return (
     <header className="header">
       <div className="container">
         <div className="logo">
-          <img src={logoImg} alt="CarrierPilot Logo" className="logo-icon" />
-          <h1>
-            CarrierPilot<span className="ai-text">.AI</span>
-          </h1>
+          <Brand className="navbar-logo" />
         </div>
         <nav className="nav">
           <ul>

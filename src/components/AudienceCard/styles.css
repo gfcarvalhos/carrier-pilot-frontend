@@ -1,0 +1,43 @@
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.audience-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-top: 50px;
+}
+
+.audience-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.audience-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.audience-card ul {
+  list-style: none;
+}
+
+.audience-card li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.audience-card li::before {
+  content: '✓';
+  position: right;
+  left: 0;
+  padding-right: 5px;
+  color: var(--accent-color);
+  font-weight: bold;
+}

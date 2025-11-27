@@ -1,0 +1,46 @@
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: -10px;
+}
+
+.hero-brand h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.logo-icon {
+  height: 80px;
+  width: auto;
+  display: block;
+}
+
+.hero-brand span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--secondary-color, #6c63ff);
+}
+
+.ai-text {
+  color: var(--secondary-color, #6c63ff);
+  margin-left: 0px;
+  font-weight: 700;
+}
+
+.navbar-logo .logo-icon {
+  height: 36px;
+}
+
+.header .logo h1,
+.header .logo span {
+  font-size: 1.8rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.header .hero-brand span {
+  font-size: 1rem;
+  margin-left: 2px;
+}
