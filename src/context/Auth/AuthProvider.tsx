@@ -1,10 +1,8 @@
-// AuthContext.tsx
-import React, { createContext, useState, type ReactNode } from "react";
-import axios from "axios";
-import type { LoginPayload, LoginResponse, AuthContextData } from "./types";
+import React, { useState, type ReactNode } from "react";
+import { AuthContext } from "./AuthContext";
+import type { LoginPayload, LoginResponse } from "./types";
 import { api } from "../../services/api";
 
-export const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
 type AuthProviderProps = { children: ReactNode };
 

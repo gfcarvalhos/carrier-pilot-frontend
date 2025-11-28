@@ -25,6 +25,7 @@ const Login: React.FC = () => {
       navigate("/dashboard")
     } catch (err){
       setError("E-mail ou senha inválidos");
+      console.log(err);
     } finally {
       setLoading(false);
     }
