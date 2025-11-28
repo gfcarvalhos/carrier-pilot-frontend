@@ -9,7 +9,6 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* Rotas com layout público */}
         <Route element={<PublicLayout  />}>
           <Route path="/" element={<Home />} />

@@ -112,3 +112,10 @@
 .btn-signup:hover {
   background: #039a80;
 }
+
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+}

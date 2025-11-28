@@ -17,3 +17,7 @@ html,
 body {
   background: #f5f7fb !important;
 }
+
+html {
+  scroll-behavior: smooth;
+}
