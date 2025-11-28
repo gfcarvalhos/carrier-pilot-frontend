@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Brand } from "../../components/Brand";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import "./styles.css";
 
 const Login = () => {
+
+  const [showPassword, setShowPassword] = useState(false)
   return (
     <>
     <Navbar />
@@ -38,13 +41,15 @@ const Login = () => {
               <div className="input-with-icon">
                 <i className="fas fa-lock" />
                 <input
-                  type="password"
+                  type={ showPassword ? "text" : "password"}
                   id="password"
                   placeholder="••••••••"
                   required
                 />
-                <button type="button" className="toggle-password">
-                  <i className="fas fa-eye" />
+                <button type="button" className="toggle-password"
+                onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"} />
                 </button>
               </div>
             </div>

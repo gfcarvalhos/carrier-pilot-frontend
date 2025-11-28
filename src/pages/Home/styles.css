@@ -1,8 +1,5 @@
 .home-wrapper {
-  min-height: calc(100vh - var(--navbar-height));
   align-items: flex-start;
-  padding-top: 40px;
-  margin-top: var(--navbar-height);
 }
 
 body {
