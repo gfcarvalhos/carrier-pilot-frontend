@@ -1,22 +1,8 @@
-/* Global Styles */
-:root {
-  --primary-color: #4a32a8;
-  --secondary-color: #6c63ff;
-  --accent-color: #00c9a7;
-  --dark-color: #1a1a2e;
-  --light-color: #f8f9fa;
-  --text-color: #333333;
-  --text-light: #6c757d;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .home-wrapper {
-  padding-top: 80px;
+  min-height: calc(100vh - var(--navbar-height));
+  align-items: flex-start;
+  padding-top: 40px;
+  margin-top: var(--navbar-height);
 }
 
 body {
