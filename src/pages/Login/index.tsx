@@ -1,12 +1,34 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Brand } from "../../components/Brand";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
+import { useAuth } from "../../context/Auth/useAuth";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-
+const Login: React.FC = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      await login({email, password})
+      navigate("/dashboard")
+    } catch (err){
+      setError("E-mail ou senha inválidos");
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <>
     <Navbar />
@@ -22,7 +44,7 @@ const Login = () => {
         <div className="auth-card">
           <h2 className="auth-title">Acesse sua conta</h2>
 
-          <form id="loginForm" className="auth-form">
+          <form id="loginForm" className="auth-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">E-mail</label>
               <div className="input-with-icon">
@@ -32,6 +54,8 @@ const Login = () => {
                   id="email"
                   placeholder="seu@email.com"
                   required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -45,6 +69,8 @@ const Login = () => {
                   id="password"
                   placeholder="••••••••"
                   required
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                 />
                 <button type="button" className="toggle-password"
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -53,6 +79,8 @@ const Login = () => {
                 </button>
               </div>
             </div>
+
+            {error && <p className="error-text">{error}</p>}
 
             <div className="form-options">
               <label className="checkbox-container">
@@ -65,8 +93,12 @@ const Login = () => {
               </a>
             </div>
 
-            <button type="submit" className="btn btn-primary auth-btn">
-              Entrar
+            <button 
+            type="submit" 
+            className="btn btn-primary auth-btn"
+            disabled={loading}
+            >
+              {loading ? "Entrando..." : "Entrar"}
             </button>
           </form>
 
