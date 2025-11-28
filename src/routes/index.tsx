@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PublicLayout  from "../layouts/PublicLayout";
+import { RequireAuth } from "./Auth/RequireAuth";
 
 const AppRoutes = () => {
   return (
@@ -16,10 +17,11 @@ const AppRoutes = () => {
         </Route>
 
         {/* Rotas com layout Dashboard */}
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<RequireAuth />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Route>
-
       </Routes>
     </BrowserRouter>
   );

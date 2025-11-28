@@ -2,8 +2,8 @@
 import React, { createContext, useState, type ReactNode } from "react";
 import axios from "axios";
 import type { LoginPayload, LoginResponse, AuthContextData } from "./types";
+import { api } from "../../services/api";
 
-const API_URL_LOGIN = `${import.meta.env.VITE_API_URL}/auth/login/`;
 export const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
 type AuthProviderProps = { children: ReactNode };
@@ -15,19 +15,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 
   const login = async ({ email, password }: LoginPayload) => {
-    console.log({username: email, password})
-    const res = await axios.post<LoginResponse>(
-      API_URL_LOGIN,
+    const res = await api.post<LoginResponse>(
+      "/auth/login/",
       { username: email, password },
       { headers: { "Content-Type": "application/json" } }
     );
-    console.log(res)
 
     if (res.status !== 200) throw new Error("Credenciais inválidas");
 
     const data = res.data;
     setAccess(data.access);
     setRefresh(data.refresh);
+    localStorage.setItem("access", data.refresh);
     localStorage.setItem("refresh", data.refresh);
   };
 
