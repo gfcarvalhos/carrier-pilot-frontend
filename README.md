@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# Carrier Pilot — Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Disciplina:** Desenvolvimento Web  
+**Curso:** Engenharia da Computação — Universidade Federal do Maranhão (UFMA)  
+**Autores:** Gabriel Felipe e Cleila Galiza
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Descrição
 
-## React Compiler
+O frontend do Carrier Pilot é uma aplicação web em React responsável pela interface visual e interação do usuário com o sistema.
+Ele consome a API do backend em Django para gerenciar perfis, habilidades, atividades, recomendações geradas por IA e o acompanhamento de progresso.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 🧭 Estrutura do Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Estrutura de alto nível:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+carrier-pilot-frontend/
+├── src/
+│   ├── components/      # Componentes reutilizáveis (botões, inputs, cards, etc.)
+│   ├── pages/           # Páginas (Login, Cadastro, Dashboard, Perfil, etc.)
+│   ├── routes/          # Configuração de rotas (React Router)
+│   ├── services/        # Serviços de API (axios, chamadas para o backend)
+│   ├── hooks/           # Hooks customizados
+│   ├── styles/          # Estilos globais e temas
+│   ├── assets/          # Imagens, ícones, fontes
+│   ├── App.tsx / App.jsx
+│   └── main.tsx / index.tsx
+├── public/
+├── package.json
+└── tsconfig.json / jsconfig.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Tecnologias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Linguagem:** TypeScript
+- **Framework:** React + Vite
+- **Roteamento:** React Router
+- **HTTP Client:** Axios
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🚀 Funcionalidades principais
+
+- Páginas de cadastro e login de usuários integradas com o backend.
+- Fluxos para criar, visualizar e editar perfis e habilidades.
+- Interface para listar atividades recomendadas, visualizar detalhes e marcar progresso.
+- Exibição de recomendações estruturadas geradas pela IA (tema, subtema, recursos, explicações).
+- Feedback visual para carregamento, erros e sucesso (toasts, popups, validações de formulário).
+
+---
+
+## ⚙️ Instalação e Execução (local)
+
+1. Clone o repositório:
+
+   ```bash
+   git clone <URL_DO_REPOSITORIO_FRONTEND>
+   cd carrier-pilot-frontend
+   ```
+
+2. Instale dependências:
+
+```bash
+npm install
+# ou
+yarn
+```
+
+3. Configure as variáveis de ambiente
+
+4. Rode o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+5. Acesse a aplicação no navegador:
+
+```bash
+http://localhost:5173
 ```
