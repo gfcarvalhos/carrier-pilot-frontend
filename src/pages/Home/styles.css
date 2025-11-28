@@ -52,34 +52,3 @@ p {
   gap: 30px;
   margin-bottom: 15px;
 }
-
-/* How It Works Section */
-.how-it-works {
-  padding: 100px 0;
-  background-color: white;
-}
-
-.steps-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 48px;
-}
-
-/* Target Audience Section */
-.for-who {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
-
-.audience-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-/* Features Section */
-.features {
-  padding: 100px 0;
-  background-color: white;
-}
