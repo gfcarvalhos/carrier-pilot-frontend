@@ -1,19 +1,21 @@
 .section-header {
   text-align: center;
-  margin-bottom: 32px;
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 32px 0;
+  gap: 12px;
 }
 
 .section-title {
-  text-align: center;
+  margin: 0;
   font-size: 2rem;
   color: var(--dark-color);
-  margin-bottom: 15px;
 }
 
 .section-subtitle {
-  text-align: center;
+  margin: 0;
   max-width: 600px;
-  margin: 0 auto 50px;
   font-size: 1.1rem;
 }

@@ -29,9 +29,3 @@ h4 {
 p {
   color: var(--text-light);
 }
-
-.container {
-  text-align: center;
-  gap: 30px;
-  margin-bottom: 15px;
-}

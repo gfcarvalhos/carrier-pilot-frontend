@@ -7,10 +7,8 @@ import { api } from "../../services/api";
 type AuthProviderProps = { children: ReactNode };
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [access, setAccess] = useState<string | null>(null);
-  const [refresh, setRefresh] = useState<string | null>(
-    localStorage.getItem("refresh")
-  );
+  const [access, setAccess] = useState<string | null>(localStorage.getItem("access"));
+  const [refresh, setRefresh] = useState<string | null>(localStorage.getItem("refresh"));
 
   const login = async ({ email, password }: LoginPayload) => {
     const res = await api.post<LoginResponse>(
@@ -24,7 +22,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const data = res.data;
     setAccess(data.access);
     setRefresh(data.refresh);
-    localStorage.setItem("access", data.refresh);
+    localStorage.setItem("access", data.access);
     localStorage.setItem("refresh", data.refresh);
   };
 

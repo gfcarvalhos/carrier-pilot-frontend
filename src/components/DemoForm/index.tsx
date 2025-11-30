@@ -2,6 +2,7 @@ import axios from 'axios';
 import './styles.css'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../context/Auth/useAuth';
 
 const API_URL = `${import.meta.env.VITE_API_URL}/usuarios/`;
 
@@ -9,6 +10,9 @@ export const DemoForm = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  const { access } = useAuth();
+    const isLoggedIn = !!access;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -53,6 +57,7 @@ export const DemoForm = () => {
   };
   return (
     <section className="demo-form" id="demo">
+      {isLoggedIn ? ( <></>) : (
         <div className="container">
           <div className="form-container">
             <h2>Pronto para transformar sua carreira?</h2>
@@ -90,6 +95,7 @@ export const DemoForm = () => {
             )}
           </div>
         </div>
+      )}
       </section>
   );
 }

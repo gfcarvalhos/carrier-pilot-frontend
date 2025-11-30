@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 
     try {
       await login({email, password})
-      navigate("/dashboard")
+      navigate("/profile")
     } catch (err){
       setError("E-mail ou senha inválidos");
       console.log(err);

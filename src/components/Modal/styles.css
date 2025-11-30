@@ -1,0 +1,35 @@
+/* modal.css */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
