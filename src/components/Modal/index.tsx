@@ -1,3 +1,5 @@
+import './styles.css'
+
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -10,11 +12,13 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
 
   return (
     <div className="modal-backdrop">
-      <div className="modal-content">
-        {title && <h2 className="modal-title">{title}</h2>}
+      <div className="modal-dialog">
         <button className="modal-close" onClick={onClose}>
           ×
         </button>
+
+        {title && <h2 className="modal-title">{title}</h2>}
+
         {children}
       </div>
     </div>

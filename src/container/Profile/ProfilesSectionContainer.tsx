@@ -25,6 +25,7 @@ type ProfileResponse = {
 export const ProfilesContainer: React.FC = () => {
   const [profiles, setProfiles] = useState<ProfileFromApi[]>([]);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isBuilding, setIsBuilding] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,9 +47,18 @@ export const ProfilesContainer: React.FC = () => {
     nivel_experiencia: string;
     objetivo_pessoal: string;
   }) => {
-    const res = await api.post<ProfileFromApi>("/perfis/", values);
-    setProfiles((prev) => [...prev, res.data]);
-    setIsCreateOpen(false);
+    try {
+      setIsBuilding(true);
+      const res = await api.post<ProfileFromApi>("/perfis/", values);
+      setProfiles((prev) => [...prev, res.data]);
+      //Criar roadmap aqui
+      setIsCreateOpen(false);
+    } catch (err) {
+      console.error("Error ao criar perfil", err);
+    } finally {
+      setIsBuilding(false);
+      setIsCreateOpen(false);
+    }
   };
 
   const handleContinue = (id: string) => {
@@ -93,6 +103,7 @@ export const ProfilesContainer: React.FC = () => {
         <NewProfileForm
           onSubmit={handleSubmitNewProfile}
           onCancel={handleCloseCreate}
+          isBuilding={isBuilding}
         />
       </Modal>
     </>

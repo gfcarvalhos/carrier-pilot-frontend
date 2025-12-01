@@ -12,7 +12,9 @@ export const DemoForm = () => {
   const [message, setMessage] = useState<string | null>(null);
 
   const { access } = useAuth();
-    const isLoggedIn = !!access;
+  const isLoggedIn = !!access;
+
+  if( isLoggedIn ) return null;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -55,9 +57,9 @@ export const DemoForm = () => {
     setIsSubmitting(false);
   }
   };
+
   return (
     <section className="demo-form" id="demo">
-      {isLoggedIn ? ( <></>) : (
         <div className="container">
           <div className="form-container">
             <h2>Pronto para transformar sua carreira?</h2>
@@ -95,7 +97,6 @@ export const DemoForm = () => {
             )}
           </div>
         </div>
-      )}
       </section>
   );
 }

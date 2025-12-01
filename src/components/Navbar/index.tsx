@@ -21,7 +21,7 @@ export const Navbar = () => {
             <ul>
               <li><Link to="/profile">Meus Perfis</Link></li>
               <li><Link to="/settings">Configurações</Link></li>
-              <li><a className="logout-btn"><i className="fas fa-sign-out-alt"></i> Sair</a></li>
+              <li><a className="logout-btn"><i className="fas fa-sign-out-alt" onClick={logout}></i> Sair</a></li>
             </ul>
               <button className="mobile-menu-btn" id="mobileMenuBtn" onClick={logout}>
                     <i className="fas fa-bars"></i>

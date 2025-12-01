@@ -34,6 +34,10 @@
   color: var(--primary-color);
 }
 
+.logout-btn {
+  cursor: pointer;
+}
+
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -80,7 +84,6 @@
   font-weight: 600;
 }
 
-/* Botão LOGIN: apenas borda azul */
 .btn-login {
   background: transparent;
   color: #6c63ff;
@@ -94,11 +97,10 @@
 }
 .btn-login:hover {
   background: #f0f8ff;
-  color: #4a32a8; /* seu --primary-color */
+  color: #4a32a8;
   border-color: #4a32a8;
 }
 
-/* Botão SIGN UP: verde destacado */
 .btn-signup {
   background: #00c9a7;
   color: #fff;

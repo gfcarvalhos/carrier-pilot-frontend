@@ -12,18 +12,19 @@ type NewProfileFormProps = {
   initialValues?: NewProfileFormValues;
   onSubmit: (values: NewProfileFormValues) => Promise<void> | void;
   onCancel: () => void;
+  isBuilding?: boolean;
 };
 
 export const NewProfileForm: React.FC<NewProfileFormProps> = ({
-  initialValues = {
+  onSubmit,
+  onCancel,
+  isBuilding = false,
+}) => {
+  const [form, setForm] = useState<NewProfileFormValues>({
     area_interesse: "",
     nivel_experiencia: "J",
     objetivo_pessoal: "",
-  },
-  onSubmit,
-  onCancel,
-}) => {
-  const [form, setForm] = useState<NewProfileFormValues>(initialValues);
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -45,6 +46,8 @@ export const NewProfileForm: React.FC<NewProfileFormProps> = ({
       setLoading(false);
     }
   };
+
+  const isDisabled = loading || isBuilding
 
   return (
     <form className="new-profile-form" onSubmit={handleSubmit}>
@@ -78,6 +81,7 @@ export const NewProfileForm: React.FC<NewProfileFormProps> = ({
         <label htmlFor="objetivo_pessoal">Objetivo pessoal</label>
         <textarea
           id="objetivo_pessoal"
+          className="input"
           value={form.objetivo_pessoal}
           onChange={(e) => handleChange("objetivo_pessoal", e.target.value)}
           rows={4}
@@ -86,11 +90,26 @@ export const NewProfileForm: React.FC<NewProfileFormProps> = ({
 
       {error && <p className="error-text">{error}</p>}
 
+      {isBuilding && (
+        <div className="roadmap-loading">
+          <div className="spinner" />
+          <p>Estamos construíndo seu roadmap personalizado...</p>
+        </div>
+      )}
+
       <div className="form-actions">
-        <button type="button" className="btn btn-ghost" onClick={onCancel}>
+        <button 
+        type="button" 
+        className="btn btn-ghost" 
+        onClick={onCancel}
+        disabled={isDisabled}
+        >
           Cancelar
         </button>
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button 
+        type="submit" 
+        className="btn btn-primary" 
+        disabled={isDisabled}>
           {loading ? "Criando..." : "Criar Perfil"}
         </button>
       </div>
