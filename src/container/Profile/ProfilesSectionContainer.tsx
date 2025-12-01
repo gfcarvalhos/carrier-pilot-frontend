@@ -4,6 +4,8 @@ import { api } from "../../services/api";
 import { ProfileSection } from "../../components/ProfileSection";
 import { Modal } from "../../components/Modal";
 import { NewProfileForm } from "../../components/Modal/NewProfileForm";
+import LoadingPage from "../../pages/Loading";
+import { Skeleton } from "../../components/Skeleton";
 
 type ProfileFromApi = {
   id: string;
@@ -51,15 +53,26 @@ export const ProfilesContainer: React.FC = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isBuilding, setIsBuilding] = useState(false);
   const [recommender, setRecommender] = useState<RecommenderFromApi[]>([]);
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get<ProfileResponse>("/perfis/").then((res) => {
-      setProfiles(res.data.results);
-    });
-    api.get<RecommenderResponse>("/recomendacoes/").then((res) => {
-      setRecommender(res.data.results);
-    })
+    async function loadData() {
+      try {
+        const [perfisRes, recRes] = await Promise.all([
+          api.get<ProfileResponse>("/perfis/"),
+          api.get<RecommenderResponse>("/recomendacoes/"),
+        ])
+
+        setProfiles(perfisRes.data.results);
+        setRecommender(recRes.data.results);
+    } catch (e) {
+      console.error("Erro ao carregar dados iniciais", e)
+    } finally {
+      setIsPageLoading(false);
+    }
+  }
+  loadData();
   }, []);
 
   const handleCreateProfile = () => {
@@ -109,23 +122,28 @@ export const ProfilesContainer: React.FC = () => {
 
   return (
     <>
-      <ProfileSection
-        profiles={recommender.map((r) => ({
-          id: r.id,
-          title: r.tema,
-          progress: 0,
-          description: r.descricao,
-          createdAt: new Date(r.data_gerada).toLocaleDateString("pt-BR"),
-          lastAccess: r.last_access ?? "-",
-        }))}
-        onCreateProfile={handleCreateProfile}
-        onContinue={handleContinue}
-        onEdit={handleEdit}
-        onExport={handleExport}
-        onDelete={handleDelete}
-      />
+      {isPageLoading ? (
+        <Skeleton />   
+      ) : (
+        <ProfileSection
+          profiles={recommender.map((r) => ({
+            id: r.id,
+            title: r.tema,
+            progress: 0,
+            description: r.descricao,
+            createdAt: "-",
+            lastAccess: "-",
+          }))}
+          onCreateProfile={handleCreateProfile}
+          onContinue={handleContinue}
+          onEdit={handleEdit}
+          onExport={handleExport}
+          onDelete={handleDelete}
+        />
+      )}
+
       <Modal
-        isOpen= {isCreateOpen}
+        isOpen={isCreateOpen}
         onClose={handleCloseCreate}
         title="Criar novo perfil"
       >
