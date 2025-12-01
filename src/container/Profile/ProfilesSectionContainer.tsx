@@ -15,6 +15,30 @@ type ProfileFromApi = {
   last_access: string;
 };
 
+type Recurso = {
+  titulo: string;
+  tipo: string;
+  url: string;
+}
+
+type RecommenderFromApi = {
+  id: string;
+  usuario: string;
+  tema: string;
+  subtema: string;
+  descricao: string;
+  recursos: Recurso[];
+  data_gerada: string;
+  last_access: string;
+};
+
+type RecommenderResponse = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RecommenderFromApi[];
+};
+
 type ProfileResponse = {
   count: number;
   next: string | null;
@@ -26,12 +50,16 @@ export const ProfilesContainer: React.FC = () => {
   const [profiles, setProfiles] = useState<ProfileFromApi[]>([]);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isBuilding, setIsBuilding] = useState(false);
+  const [recommender, setRecommender] = useState<RecommenderFromApi[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     api.get<ProfileResponse>("/perfis/").then((res) => {
       setProfiles(res.data.results);
     });
+    api.get<RecommenderResponse>("/recomendacoes/").then((res) => {
+      setRecommender(res.data.results);
+    })
   }, []);
 
   const handleCreateProfile = () => {
@@ -49,9 +77,10 @@ export const ProfilesContainer: React.FC = () => {
   }) => {
     try {
       setIsBuilding(true);
-      const res = await api.post<ProfileFromApi>("/perfis/", values);
-      setProfiles((prev) => [...prev, res.data]);
-      //Criar roadmap aqui
+      await api.post<ProfileFromApi>("/perfis/", values);
+      const recRes = await api.get<RecommenderResponse>("/recomendacoes/")
+      setRecommender(recRes.data.results);
+
       setIsCreateOpen(false);
     } catch (err) {
       console.error("Error ao criar perfil", err);
@@ -81,13 +110,13 @@ export const ProfilesContainer: React.FC = () => {
   return (
     <>
       <ProfileSection
-        profiles={profiles.map((p) => ({
-          id: p.id,
-          title: p.name,
-          progress: p.progress,
-          description: p.objetivo_pessoal,
-          createdAt: new Date(p.criado_em).toLocaleDateString("pt-BR"),
-          lastAccess: p.last_access ?? "-",
+        profiles={recommender.map((r) => ({
+          id: r.id,
+          title: r.tema,
+          progress: 0,
+          description: r.descricao,
+          createdAt: new Date(r.data_gerada).toLocaleDateString("pt-BR"),
+          lastAccess: r.last_access ?? "-",
         }))}
         onCreateProfile={handleCreateProfile}
         onContinue={handleContinue}

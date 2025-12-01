@@ -50,6 +50,7 @@
   border-radius: 999px;
   border: 2px solid #ccc;
   border-top-color: #4f46e5;
+  margin-bottom: 1px;
   animation: spin 0.8s linear infinite;
 }
 

@@ -10,7 +10,7 @@ export const WelcomeSectionContainer: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
-      const res = await api.get("/perfis");
+      const res = await api.get("/perfis/");
       const profiles = res.data;
       setProfilesCount(profiles.length);
       setActivePaths(1);
