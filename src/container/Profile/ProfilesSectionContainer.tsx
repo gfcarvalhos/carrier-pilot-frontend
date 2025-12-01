@@ -4,7 +4,6 @@ import { api } from "../../services/api";
 import { ProfileSection } from "../../components/ProfileSection";
 import { Modal } from "../../components/Modal";
 import { NewProfileForm } from "../../components/Modal/NewProfileForm";
-import LoadingPage from "../../pages/Loading";
 import { Skeleton } from "../../components/Skeleton";
 
 type ProfileFromApi = {
@@ -41,15 +40,7 @@ type RecommenderResponse = {
   results: RecommenderFromApi[];
 };
 
-type ProfileResponse = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: ProfileFromApi[]
-}
-
 export const ProfilesContainer: React.FC = () => {
-  const [profiles, setProfiles] = useState<ProfileFromApi[]>([]);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isBuilding, setIsBuilding] = useState(false);
   const [recommender, setRecommender] = useState<RecommenderFromApi[]>([]);
@@ -59,12 +50,7 @@ export const ProfilesContainer: React.FC = () => {
   useEffect(() => {
     async function loadData() {
       try {
-        const [perfisRes, recRes] = await Promise.all([
-          api.get<ProfileResponse>("/perfis/"),
-          api.get<RecommenderResponse>("/recomendacoes/"),
-        ])
-
-        setProfiles(perfisRes.data.results);
+        const recRes = await api.get<RecommenderResponse>("/recomendacoes/")
         setRecommender(recRes.data.results);
     } catch (e) {
       console.error("Erro ao carregar dados iniciais", e)
@@ -117,7 +103,6 @@ export const ProfilesContainer: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     await api.delete(`/perfis/${id}/`);
-    setProfiles((prev) => prev.filter((p) => p.id !== id));
   };
 
   return (
