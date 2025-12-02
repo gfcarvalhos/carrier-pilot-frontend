@@ -1,0 +1,61 @@
+/* Section da área de recomendações */
+.recommendations-section {
+  margin-top: 32px;
+  margin-bottom: 48px;
+}
+
+.recommendations-section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Grid de cards */
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+/* Card individual */
+.recommendation-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Ícone circular */
+.recommendation-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(74, 50, 168, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+/* Título e texto do card */
+.recommendation-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.recommendation-card p {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.recommendation-card .btn.btn-sm {
+  align-self: flex-start;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
