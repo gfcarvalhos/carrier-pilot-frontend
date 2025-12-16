@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
@@ -9,7 +9,6 @@ import Profile from "../pages/Profile";
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter>
       <Routes>
         {/* Rotas com layout público */}
         <Route element={<PublicLayout  />}>
@@ -25,7 +24,6 @@ const AppRoutes = () => {
           </Route>
         </Route>
       </Routes>
-    </BrowserRouter>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, type ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
 import type { LoginPayload, LoginResponse } from "./types";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 
 type AuthProviderProps = { children: ReactNode };
@@ -9,6 +10,8 @@ type AuthProviderProps = { children: ReactNode };
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [access, setAccess] = useState<string | null>(localStorage.getItem("access"));
   const [refresh, setRefresh] = useState<string | null>(localStorage.getItem("refresh"));
+
+  const navigate = useNavigate();
 
   const login = async ({ email, password }: LoginPayload) => {
     const res = await api.post<LoginResponse>(
@@ -29,7 +32,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     setAccess(null);
     setRefresh(null);
+    localStorage.removeItem("access");
     localStorage.removeItem("refresh");
+    navigate("/login");
   };
 
   return (

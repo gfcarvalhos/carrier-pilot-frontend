@@ -35,7 +35,36 @@
 }
 
 .logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 2px solid #ff4d4f;
+  background: transparent;
+  color: #ff4d4f;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.logout-btn i {
+  font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+  background: #ff4d4f;
+  color: #fff;
+  border-color: #ff4d4f;
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+  opacity: 0.9;
 }
 
 .mobile-menu-btn {

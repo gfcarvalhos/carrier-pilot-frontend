@@ -8,9 +8,11 @@ export type Atividade = {
   recomendacao: number | null; // id da Recomendacao ou null
 };
 
+export type TipoRecurso = 'youtube' | 'artigo' | 'curso' | 'livro';
+
 export type Recurso = {
   titulo: string;
-  tipo: string;
+  tipo: TipoRecurso;
   url: string;
 };
 
@@ -48,3 +50,14 @@ export type PagedResponse<T> = {
   previous: string | null;
   results: T[];
 };
+
+export interface RoadmapResponse {
+  tema: string;
+  subtema: string;
+  descricao: string;
+  recursos: Recurso[];
+  atividades: Atividade[];
+  progresso_percentual?: number;
+  etapa_atual?: number;
+  total_etapas?: number;
+}
