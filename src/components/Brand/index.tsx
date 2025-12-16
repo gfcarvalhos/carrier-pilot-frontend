@@ -1,16 +1,16 @@
 import logoImg from '../../assets/carrierPilot.png';
-import './styles.css';
+import "./styles.css";
 
 type BrandProps = {
-  className?: string;
+  variant?: "default" | "navbar" | "hero";
 };
 
-export const Brand = ({ className }: BrandProps) => {
+export const Brand = ({ variant = "default" }: BrandProps) => {
   return (
-    <span className={`hero-brand ${className}`}>
-      <img src={logoImg} alt="Logo CarrierPilot" className="logo-icon" />
-      <h1>
-        CarrierPilot<span className="ai-text">.AI</span>
+    <span className={`brand brand--${variant}`}>
+      <img src={logoImg} alt="Logo CarrierPilot" className="brand__icon" />
+      <h1 className="brand__text">
+        CarrierPilot<span className="brand__ai">.AI</span>
       </h1>
     </span>
   );

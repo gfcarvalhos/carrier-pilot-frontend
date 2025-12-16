@@ -7,7 +7,7 @@ export const Hero = () => {
       <div className="container">
         <div className="hero-content">
           <div className="hero-brand">
-            <Brand />
+            <Brand variant="hero"/>
           </div>
           <h2>Seu mentor digital para carreira e aprendizado inteligente</h2>
           <p>

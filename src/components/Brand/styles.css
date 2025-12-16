@@ -1,46 +1,40 @@
-.hero-brand {
-  display: flex;
+.brand {
+  display: inline-flex;
   align-items: center;
   gap: -10px;
 }
 
-.hero-brand h1 {
-  margin: 0;
-  font-size: 2.6rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.logo-icon {
-  height: 80px;
-  width: auto;
+.brand__icon {
   display: block;
 }
 
-.hero-brand span {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--secondary-color, #6c63ff);
-}
-
-.ai-text {
-  color: var(--secondary-color, #6c63ff);
-  margin-left: 0px;
-  font-weight: 700;
-}
-
-.navbar-logo .logo-icon {
-  height: 36px;
-}
-
-.header .logo h1,
-.header .logo span {
-  font-size: 1.8rem;
+.brand__text {
   margin: 0;
-  line-height: 1;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--primary-color);
+  font-size: 2.6rem;
 }
 
-.header .hero-brand span {
-  font-size: 1rem;
-  margin-left: 2px;
+.brand__ai {
+  color: var(--secondary-color, #6c63ff);
+  font-weight: 700;
+  font-size: 0.6em;
+  vertical-align: baseline;
+}
+
+.brand--navbar .brand__icon {
+  height: 32px;
+}
+
+.brand--navbar .brand__text {
+  font-size: 1.4rem;
+}
+
+.brand--hero .brand__icon {
+  height: 80px;
+}
+
+.brand--hero .brand__text {
+  font-size: 2.6rem;
 }

@@ -8,7 +8,7 @@ export const Footer = () => {
           <div className="footer-content">
             <div className="footer-brand">
               <div className="logo">
-                <Brand className="footer-logo" />
+                <Brand variant="navbar" />
               </div>
               <p>Mentoria digital para o futuro do trabalho</p>
             </div>

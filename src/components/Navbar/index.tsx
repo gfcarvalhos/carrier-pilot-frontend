@@ -11,8 +11,8 @@ export const Navbar = () => {
     <header className="header">
       <div className="container">
         <div className="logo"> 
-          <Link to="/" className="brand-link"> 
-            <Brand className="navbar-logo" /> 
+          <Link to="/" className="brand-link">
+            <Brand variant="navbar" />
           </Link> 
         </div>
         <nav className="nav">
