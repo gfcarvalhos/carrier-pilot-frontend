@@ -5,7 +5,7 @@ import { Brand } from "../../components/Brand";
 const LoadingPage: React.FC = () => {
   return (
     <div className="loading-page">
-      <Brand />
+      <Brand variant="default" />
       <div className="loading-spinner"/>
       <div className="loading-text">Carregando...</div>
     </div>

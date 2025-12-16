@@ -36,7 +36,7 @@ const Login: React.FC = () => {
     <div className="login-wrapper">
       <section className="auth-container">
         <div className="auth-logo">
-          <Brand className="logo" />
+          <Brand variant="hero" />
           <p className="auth-tagline">
             Mentoria digital para o futuro do trabalho
           </p>
