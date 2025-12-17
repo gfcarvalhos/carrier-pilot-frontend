@@ -1,11 +1,9 @@
 export type Atividade = {
-  id: number;
   titulo: string;
-  descricao: string;
   categoria: string;
+  descricao: string;
+  prioridade: number;
   duracao_minutos: number;
-  prioridade: 1 | 2 | 3; // 1=Alta, 2=Média, 3=Baixa
-  recomendacao: number | null; // id da Recomendacao ou null
 };
 
 export type TipoRecurso = 'youtube' | 'artigo' | 'curso' | 'livro';
