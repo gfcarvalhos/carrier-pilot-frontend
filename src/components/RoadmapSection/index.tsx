@@ -48,7 +48,8 @@ export const RoadmapSection: React.FC<RoadmapProps> = ({
           </div>
         </div>
       </header>
-
+    
+    <div className="mb-16 overflow-x-auto">
       <div className="dashboard-roadmap">
         {atividadesOrdenadas.map((atividade, index) => (
           <Activities
@@ -59,6 +60,7 @@ export const RoadmapSection: React.FC<RoadmapProps> = ({
           />
         ))}
       </div>
+    </div>
     </section>
   );
 };

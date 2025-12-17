@@ -51,6 +51,30 @@ export type PagedResponse<T> = {
   results: T[];
 };
 
+export interface RecomendacaoResponse {
+  id: number;
+  usuario_nome: string;
+  usuario_email: string;
+  tema: string;
+  subtema: string | null;
+  descricao: string;
+  recursos: Recurso[];
+  status: string;
+  payload_ia: {
+    tema: string;
+    subtema: string;
+    descricao: string;
+    recursos: Recurso[];
+    atividades: Atividade[];
+  };
+  explicacao_ia: string | null;
+  score_relevancia: number;
+  data_gerada: string;
+  usuario: number;
+  perfil: number;
+}
+
+
 export interface RoadmapResponse {
   tema: string;
   subtema: string;

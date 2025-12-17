@@ -1,26 +1,48 @@
-// src/features/carreira/CareerRoadmapContainer.tsx
 import React, { useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import type { RoadmapResponse } from '../../types/carreira';
+import type { RoadmapResponse, RecomendacaoResponse } from '../../types/carreira';
 import { RoadmapSection } from '../../components/RoadmapSection';
-//import { ResourceSection } from './ResourceSection';
+import { useParams } from 'react-router-dom';
 
 export const CareerRoadmapContainer: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+
   const [data, setData] = useState<RoadmapResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!id) return;
+
     let isMounted = true;
 
     const fetchRoadmap = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await api.get<RoadmapResponse>('/recomendacoes/');
-        if (!isMounted) return;
+        const response = await api.get<RecomendacaoResponse>(`/recomendacoes/${id}/`);
 
-        setData(response.data);
+        if (!isMounted) return;
+        const rec = response.data;
+
+        if (!rec) {
+          setData(null);
+          return;
+        }
+        
+        const mapped: RoadmapResponse = {
+          tema: rec.tema,
+          subtema: rec.subtema ?? rec.payload_ia.subtema,
+          descricao: rec.descricao ?? rec.payload_ia.descricao,
+          recursos: rec.recursos?.length ? rec.recursos : rec.payload_ia.recursos,
+          atividades: rec.payload_ia.atividades ?? [],
+          progresso_percentual: undefined,
+          etapa_atual: undefined,
+          total_etapas: undefined,
+        };
+
+        setData(mapped);
+
       } catch (err) {
         if (!isMounted) return;
         setError('Não foi possível carregar seu roadmap no momento.');
@@ -35,7 +57,15 @@ export const CareerRoadmapContainer: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [id]);
+
+  if (!id) {
+    return (
+      <div className="flex items-center justify-center min-h-[200px]">
+        <p>Perfil não encontrado.</p>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -58,17 +88,18 @@ export const CareerRoadmapContainer: React.FC = () => {
   const totalEtapas =
     data.total_etapas ?? (data.atividades.length > 0 ? data.atividades.length : 1);
 
+  console.log(data);
   return (
-    <main className="career-roadmap-page">
-      <RoadmapSection
-        tema={data.tema}
-        atividades={data.atividades}
-        progressoPercentual={progressoPercentual}
-        etapaAtual={etapaAtual}
-        totalEtapas={totalEtapas}
-      />
-    </main>
+    <main className="gradient-bg min-h-screen font-sans">
+      <div className="container mx-auto px-4 py-12">
+        <RoadmapSection
+          tema={data.tema}
+          atividades={data.atividades}
+          progressoPercentual={progressoPercentual}
+          etapaAtual={etapaAtual}
+          totalEtapas={totalEtapas}
+        />
+      </div>
+  </main>
   );
 };
-
-//<ResourceSection recursos={data.recursos} />

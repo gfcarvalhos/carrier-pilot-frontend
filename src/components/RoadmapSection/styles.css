@@ -1,4 +1,27 @@
-/* styles.css (ou roadmap.css) */
+.gradient-bg {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
+}
+.phase-connector {
+  position: relative;
+}
+.phase-connector::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 40px;
+  height: 3px;
+  background: #e2e8f0;
+}
+.phase-connector.completed::after {
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+}
+.phase-connector.current::after {
+  background: linear-gradient(90deg, #8b5cf6, #d946ef);
+}
+.glow-card {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+}
 
 .roadmap-section {
   padding: 2.5rem 0;
@@ -60,8 +83,8 @@
 }
 
 .dashboard-roadmap {
-  margin-top: 2rem;
   display: flex;
   gap: 1.5rem;
-  overflow-x: auto;
+  padding-bottom: 2rem;
+  min-width: max-content;
 }

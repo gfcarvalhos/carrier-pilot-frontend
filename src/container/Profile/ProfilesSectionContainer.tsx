@@ -90,19 +90,19 @@ export const ProfilesContainer: React.FC = () => {
   };
 
   const handleContinue = (id: string) => {
-    navigate(`/perfis/${id}/roadmap`);
+    navigate(`/profile/${id}/roadmap`);
   };
 
   const handleEdit = (id: string) => {
-    navigate(`/perfis/${id}/edit`);
+    navigate(`/profile/${id}/edit`);
   };
 
   const handleExport = (id: string) => {
-    api.get(`/perfis/${id}/export`, { responseType: "blob" });
+    api.get(`/profile/${id}/export`, { responseType: "blob" });
   };
 
   const handleDelete = async (id: string) => {
-    await api.delete(`/perfis/${id}/`);
+    await api.delete(`/profile/${id}/`);
   };
 
   return (

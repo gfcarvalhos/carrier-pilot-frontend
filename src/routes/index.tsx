@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Dashboard from "../pages/Dashboard";
+import RoadMapPage from "../pages/RoadMapPage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PublicLayout  from "../layouts/PublicLayout";
 import { RequireAuth } from "./Auth/RequireAuth";
@@ -19,7 +19,7 @@ const AppRoutes = () => {
         {/* Rotas com layout Dashboard */}
         <Route element={<RequireAuth />}>
           <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile/:id/roadmap" element={<RoadMapPage />} />
             <Route path="/profile" element={<Profile />}/>
           </Route>
         </Route>
